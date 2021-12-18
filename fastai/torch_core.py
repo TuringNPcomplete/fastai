@@ -77,7 +77,7 @@ def show_images(ims, nrows=1, ncols=None, titles=None, **kwargs):
     if ncols is None: ncols = int(math.ceil(len(ims)/nrows))
     if titles is None: titles = [None]*len(ims)
     axs = subplots(nrows, ncols, **kwargs)[1].flat
-    for im,t,ax in zip(ims, titles, axs): show_image(im, ax=ax, title=t)
+    for im,t,ax in zip(ims, titles, axs): if im.ndim < 3 show_image(im, ax=ax, title=t, cmap='gray') else show_image(im, ax=ax, title=t)
 
 # Cell
 class ArrayBase(ndarray):
