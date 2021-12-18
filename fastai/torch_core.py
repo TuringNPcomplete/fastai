@@ -59,7 +59,7 @@ def show_image(im, ax=None, figsize=None, title=None, ctx=None, **kwargs):
     ax = ifnone(ax,ctx)
     if figsize is None: figsize = (_fig_bounds(im.shape[0]), _fig_bounds(im.shape[1]))
     if ax is None: _,ax = plt.subplots(figsize=figsize)
-    ax.imshow(im, **kwargs)
+    ax.imshow(im, cmap='gray', **kwargs) if im.ndim<3 else ax.imshow(im, **kwargs)
     if title is not None: ax.set_title(title)
     ax.axis('off')
     return ax
